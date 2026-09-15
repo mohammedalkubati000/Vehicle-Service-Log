@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Vehicle_Service_Log.Models.ServiceLog>
+<div class="container">
+    <h1>سجلات الخدمة والصيانة</h1>
+    <div class="text-end mb-3">
+        <a asp-action="Create" class="btn btn-primary"> إضافة سجل خدمة جديد </a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>رقم السجل</th>
+                <th>نوع الخدمة / الصيانة</th>
+                <th>التكلفة (ريال)</th>
+                <th>العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.Id</td>
+                    <td>@log.ServiceType</td>
+                    <td>@log.Cost</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Id="@log.Id" class="btn btn-warning btn-sm"> Edit </a>
+                        <a asp-action="Delete" asp-route-Id="@log.Id" class="btn btn-danger btn-sm"> Delete </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

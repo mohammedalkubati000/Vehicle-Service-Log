@@ -1,0 +1,56 @@
+﻿@model Vehicle_Service_Log.Models.ServiceLog
+@{
+    ViewData["Title"] = "إضافة سجل خدمة";
+}
+
+<div class="container">
+    <h1>إضافة سجل خدمة جديد</h1>
+    <form asp-action="Create" method="post">
+        <div class="text-danger" asp-validation-summary="All"></div>
+
+        <!-- 💡 قائمة منسدلة ذكية لاختيار السيارة عن طريق رقم اللوحة الممرر من الـ ViewBag -->
+        <div class="form-group mb-3">
+            <label asp-for="VehicleId" class="control-label">السيارة (رقم اللوحة)</label>
+            <select asp-for="VehicleId" class="form-control" asp-items="ViewBag.VehicleId">
+                <option value="">-- اختر السيارة --</option>
+            </select>
+            <span class="text-danger" asp-validation-for="VehicleId"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ServiceType" class="control-label">نوع الخدمة / الصيانة</label>
+            <input asp-for="ServiceType" class="form-control" />
+            <span class="text-danger" asp-validation-for="ServiceType"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Cost" class="control-label">التكلفة (ريال)</label>
+            <input asp-for="Cost" class="form-control" type="number" step="0.01" />
+            <span class="text-danger" asp-validation-for="Cost"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ServiceDate" class="control-label">تاريخ الخدمة</label>
+            <input asp-for="ServiceDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            <span class="text-danger" asp-validation-for="ServiceDate"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Notes" class="control-label">ملاحظات إضافية</label>
+            <textarea asp-for="Notes" class="form-control"></textarea>
+            <span class="text-danger" asp-validation-for="Notes"></span>
+        </div>
+
+        <div class="form-group mt-4">
+            <input type="submit" value="إضافة السجل" class="btn btn-primary" />
+        </div>
+    </form>
+    <div class="mt-3">
+        <a asp-action="Index">العودة للقائمة</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

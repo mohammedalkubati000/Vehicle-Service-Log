@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Vehicle_Service_Log.Models.Vehicle>
+<div class="container">
+    <h1>السيارات (Vehicles)</h1>
+    <div class="text-end mb-3">
+        <a asp-action="Create" class="btn btn-primary"> إضافة سيارة جديدة </a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>الشركة المصنعة</th>
+                <th>الموديل</th>
+                <th>رقم اللوحة</th>
+                <th>العمليات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in Model)
+            {
+                <tr>
+                    <td>@vehicle.Make</td>
+                    <td>@vehicle.Model</td>
+                    <td>@vehicle.LicensePlate</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Id="@vehicle.Id" class="btn btn-warning btn-sm"> تعديل </a>
+                        <a asp-action="Delete" asp-route-Id="@vehicle.Id" class="btn btn-danger btn-sm"> حذف </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
